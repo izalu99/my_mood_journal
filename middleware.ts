@@ -7,8 +7,8 @@ import {
 const isProtectedRoute = createRouteMatcher([
   '/dashboard',
   '/settings',
+  '/journal',
   '/new-user',
-  '/journal', 
 ]);
 
 

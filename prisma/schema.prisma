@@ -34,7 +34,7 @@ model JournalEntry {
 
   analysis Analysis?
 
-  @@index([userId])
+  @@unique([userId, id]) //compound id which means that the combination of userId and id must be unique
 }
 
 model Analysis {

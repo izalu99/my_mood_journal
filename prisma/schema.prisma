@@ -47,7 +47,9 @@ model Analysis {
 
   mood     String  @map("mood")
   summary  String  @map("summary")
+  color    String  @map("color")
   negative Boolean @map("negative")
+  subject  String  @map("subject")
 
   @@unique([entryId])
 }

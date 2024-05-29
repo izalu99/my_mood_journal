@@ -4,6 +4,7 @@ import EntryCard from '@/components/EntryCard';
 import { getUserByClerkID } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import Link from 'next/link';
+import { analyze } from '@/utils/ai';
 
 
 
@@ -17,6 +18,12 @@ const getEntries = async () => {
             createdAt: 'desc',
         },    
     })
+
+
+    //check if open ai is working
+    //await analyze(`im gonna give you a journal entry. and i want you to analyze it for a few things: mood, a summary, whether it is negative or not and what the subject us. as well as the color representation
+    //of the mood. you need to respond back with a json in the format:{mood: "", summary: "", negative: "", subject: "", color: ""}
+    //ok this is the entry: Today was a good day. I went to the park and played with my dog. I felt happy and content. The weather was nice and sunny.`)
 
     return entries
 

@@ -2,6 +2,7 @@ import { getUserByClerkID } from "@/utils/auth"
 import { prisma } from "@/utils/db"
 import { NextResponse } from "next/server"
 import { analyze } from "@/utils/ai"
+import EntryCard from "@/components/EntryCard"
 
 export const PATCH = async (request: Request, {params}:any) => {
     const { content } = await request.json()
@@ -14,19 +15,22 @@ export const PATCH = async (request: Request, {params}:any) => {
             },
         },
         data: {
-            content: content,
+            content,
         },
     })
 
+
+
     const analysis = await analyze(updatedEntry.content)
     const updated = await prisma.analysis.upsert({
-        where:{
+        where: {
             entryId: updatedEntry.id,
         },
         create: {
             entryId: updatedEntry.id,
             ...analysis,
         },
+            
         update: analysis,
     })
 

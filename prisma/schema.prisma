@@ -43,7 +43,7 @@ model Analysis {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   entryId String       @map("entry_id") @db.ObjectId
-  entry   JournalEntry @relation(fields: [entryId], references: [id])
+  entry   JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
   mood     String  @map("mood")
   summary  String  @map("summary")

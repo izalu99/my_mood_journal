@@ -3,6 +3,7 @@ import { prisma } from "@/utils/db"
 import { NextResponse } from "next/server"
 import { analyze } from "@/utils/ai"
 import EntryCard from "@/components/EntryCard"
+import { revalidatePath } from "next/cache"
 
 export const PATCH = async (request: Request, {params}:any) => {
     const { content } = await request.json()

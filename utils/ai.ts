@@ -1,9 +1,12 @@
 
-import { OpenAI } from '@langchain/openai'
+import { OpenAI, OpenAIEmbeddings } from '@langchain/openai'
 //import { StructuredOutputParser } from 'langchain/output_parsers'
 import { StructuredOutputParser } from '@langchain/core/output_parsers'
 import z from 'zod'
 import { PromptTemplate } from '@langchain/core/prompts'
+import { Document } from '@langchain/core/documents'
+import { loadQARefineChain } from 'langchain/chains'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 
 
 
@@ -59,5 +62,34 @@ export const analyze = async (content:any) => {
     } catch (e){
         console.log(e)
     }
+
+}
+
+
+export const qa = async (question:any, entries:any) => {
+    // take the entries and turn into docs
+    // why use a document? because it has a metadata field that can be used to store the id of the entry.
+    // also langchain has a lot of functionality that is by default used with documents.
+    const docs = entries.map((entry:any) => {
+        return new Document({
+            pageContent: entry.content,
+            metadata:{
+                id: entry.id, 
+                createdAt: entry.createdAt,
+            }
+        })
+    })
+
+    const model = new OpenAI({temperature:0, model: 'gpt-3.5-turbo'})
+    const chain = loadQARefineChain(model) // this is a chain that takes a question and a list of documents and returns the best answer.
+    const embeddings = new OpenAIEmbeddings() // this is a class that takes a list of documents and returns embeddings for them.
+    const store = await MemoryVectorStore.fromDocuments(docs, embeddings) // this is a vector store that takes a list of documents and returns a list of relevant documents for a given question.
+    const relevantDocs = await store.similaritySearch(question) //takes a question and returns a list of relevant documents.
+    const results = await chain.invoke({
+        input_documents: relevantDocs,
+        question,
+    })
+
+    return results.output_text
 
 }

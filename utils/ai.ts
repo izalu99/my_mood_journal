@@ -13,6 +13,9 @@ import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 // this parser is used to format the output of the AI model to match the format instructions.
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
+        sentimentScore: z
+        .number()
+        .describe('Sentiment of the text and rated on a Scale from -10 to 10; where -10 is very negative, 0 is neutral and 10 is very positive.'),
         mood: z
         .string()
         .describe('The mood of the person who wrote the journal entry.'),

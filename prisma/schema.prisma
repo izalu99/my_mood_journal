@@ -1,7 +1,6 @@
 // Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
@@ -20,6 +19,7 @@ model User {
   email   String @unique @map("email")
 
   entries JournalEntry[]
+  analysis Analysis[]
 }
 
 model JournalEntry {
@@ -45,11 +45,16 @@ model Analysis {
   entryId String       @map("entry_id") @db.ObjectId
   entry   JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
-  mood     String  @map("mood")
-  summary  String  @map("summary")
-  color    String  @map("color")
-  negative Boolean @map("negative")
-  subject  String  @map("subject")
+  userId String @map("user_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  mood           String  @map("mood")
+  summary        String  @map("summary")
+  color          String  @map("color")
+  negative       Boolean @map("negative")
+  subject        String  @map("subject")
+  sentimentScore Float   @default(0) @map("sentiment_score")
 
   @@unique([entryId])
+  @@index([userId])
 }

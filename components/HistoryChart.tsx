@@ -4,7 +4,11 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 
 
-
+// active, payload and label props are automatically passed to CustomTooltip component by  rechart's Toottip component
+// active: boolean - whether the tooltip is active or not
+// payload: array - an array of the active payload
+// label: string - the label of the active tooltip; usually the x-axis value
+// see more in recharts documentation
 const CustomTooltip = ({ active, payload, label }) => {
 
     const dateLabel = new Date(label).toLocaleString('en-CA',{

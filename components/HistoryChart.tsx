@@ -39,7 +39,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 
 
-const HistoryChart = ({ data }) => {
+const HistoryChart = ({ data }: any) => {
 
     return (
         <ResponsiveContainer width="100%" height= "100%">

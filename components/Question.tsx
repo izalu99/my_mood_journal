@@ -30,14 +30,16 @@ const Question = () => {
     }
 
     return <div>
-        <form onSubmit={handleSubmit}>
+        <form 
+        className = 'flex gap-1'
+        onSubmit={handleSubmit}>
             <input
             disabled={loading}
             onChange={onChange}
             className="border border-white/20 px-4 py-2 text-lg rounded-lg text-black" 
             value= {value} 
             type="text" 
-            placeholder="Ask a question" />
+            placeholder="Ask a question regarding your journal entries." />
             <button disabled={loading} type='submit' className='bg-blue-400 px-4 py-2 rounded-lg text-white text-lg'>Ask</button>
         </form>
 

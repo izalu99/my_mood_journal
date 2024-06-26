@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 const NewEntryCard = () => {
 
     const router = useRouter()
+    const date = new Date().toDateString();
 
     const handleOnClick = async () => {
         const data = await createNewEntry()
@@ -20,6 +21,7 @@ const NewEntryCard = () => {
             >
                 <div className='text-2xl'>+</div>
                 <span className='text-3xl'>New Entry</span>
+                <div>{date}</div>
             </div>
         </div>
     )

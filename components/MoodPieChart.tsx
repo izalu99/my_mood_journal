@@ -3,7 +3,7 @@ import {Pie, PieChart, Cell} from 'recharts';
 
 
 const MoodPieChart = ({data}: any) => {
-  // data shall be the analyses data from the database, has mood and color
+  // data is the analyses data from the database, has mood and color
   // to make a pie chart we need to count the number of each mood
   // and return an array of objects with the mood and the count
   // as well as to use the color of each mood for the pie chart

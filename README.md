@@ -1,6 +1,7 @@
 # my_mood_journalThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-*Note: Created this with Scott Moss' FrontEnd Master's course: Next.JS Fullstack App with AI.*
-*Changes from the tutorial: MongoDB database instead of PlanetScale. Next.JS 14, More graphs/visuals on the Mood History*
+**Note**: 
+- *Created this with Scott Moss' FrontEnd Master's course: Next.JS Fullstack App with AI.*
+- *Changes from the tutorial: MongoDB database instead of PlanetScale. Next.JS 14, More graphs/visuals on the Mood History*
 ## Getting Started
 
 First, run the development server:

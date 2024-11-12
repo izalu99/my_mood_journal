@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.1.2",
+    "@clerk/nextjs": "^5.7.5",
     "@clerk/types": "^4.5.0",
     "@langchain/openai": "^0.0.34",
     "@prisma/client": "^5.14.0",
